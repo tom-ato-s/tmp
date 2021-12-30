@@ -102,7 +102,6 @@ public class HelpdeskUITest {
     return generatedString;
     }
 
-
     protected Ticket buildNewTicket(TicketPage ticketPage) {
         Ticket ticketOfPage = new Ticket();
 
