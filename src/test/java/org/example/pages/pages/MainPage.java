@@ -1,4 +1,4 @@
-package pages;
+package org.example.pages.pages;
 
 import org.openqa.selenium.support.PageFactory;
 
@@ -10,6 +10,3 @@ public class MainPage extends HelpdeskBasePage {
     }
 
 }
-
-
-//            http://django-helpdesk-demo.herokuapp.com

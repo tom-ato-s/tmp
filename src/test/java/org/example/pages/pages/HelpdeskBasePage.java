@@ -1,6 +1,6 @@
-package pages;
+package org.example.pages.pages;
 
-import elements.MainMenu;
+import org.example.pages.elements.MainMenu;
 
 /** Базовая страница с элементами, доступными на всех страницах наследниках */
 public class HelpdeskBasePage extends AbstractPage {

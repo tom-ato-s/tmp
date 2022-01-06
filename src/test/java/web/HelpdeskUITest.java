@@ -1,5 +1,9 @@
 package web;
 
+import io.qameta.allure.Step;
+import org.example.pages.elements.MainMenu;
+import org.example.pages.model.Ticket;
+import org.example.pages.pages.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,10 +13,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
-import model.Ticket;
-import pages.*;
-import elements.MainMenu;
 
 import java.io.IOException;
 import java.util.Random;
@@ -42,7 +42,6 @@ public class HelpdeskUITest {
     @Test
     public void createTicketTest() throws IOException {
         ticket = buildNewTicket();
-        // todo: открыть главную страницу
         driver.get(System.getProperty("site.url"));
         WebElement newTicketBtn = driver.findElement(By.xpath(".//a[@href='/tickets/submit/']"));
 
@@ -62,12 +61,17 @@ public class HelpdeskUITest {
         ticketsPage.openTicket(ticket); //найти и открыть тикет
 
         ticketOfPage = buildNewTicket(ticketPage); // создание объекта тикет из данных окна TicketPage
+
+       // equalsTickets();
+
        Assert.assertEquals(ticket.equals(ticketOfPage), true, "Объекты эквивалентны"); //сравнение тикетов: созданного в начале и полученного из окна
 
+        //Assert.assertEquals(ticket.hashCode(ticketOfPage), false, "Объекты эквивалентны");
         // Закрываем текущее окно браузера
         driver.close();
     }
 
+    @Step("Создание и заполнение объекта Ticket, созданного изначально вручную")
     /**
      * Создаём и заполняем объект тикета
      *
@@ -102,17 +106,21 @@ public class HelpdeskUITest {
     return generatedString;
     }
 
+    @Step("Создание и заполение объекта Ticket из страницы сайта")
+    /**
+     * Создаём и заполняем объект тикета
+     *
+     * @return заполненный объект тикета
+     */
 
     protected Ticket buildNewTicket(TicketPage ticketPage) {
         Ticket ticketOfPage = new Ticket();
-
         ticketOfPage.setTitle(ticketPage.getNameTitle());
         // todo: заполнить остальные необходимые поля тикета
         ticketOfPage.setQueueValue(ticketPage.getQueue());
         ticketOfPage.setDescriptionValue(ticketPage.getDescription());
         ticketOfPage.setPriorityValue(ticketPage.getPriority());
         ticketOfPage.setMailValue(ticketPage.getEmail());
-
         return ticket;
     }
 
@@ -122,4 +130,14 @@ public class HelpdeskUITest {
         // Закрываем все окна браузера и освобождаем ресурсы
         driver.quit();
     }
+
+//    @Attachment(value = "Скриншот", type = "image/png")
+//    public static byte[] saveScreenshot(byte[] screenshot)
+//    {return screenshot;}
+
+//    @Attachment
+//    public static byte[] getBytes(String resourceName) throws IOException {
+//        return Files.readAllBytes(Paths.get("src/main/resources", resourceName));
+//    }
+
 }

@@ -1,4 +1,6 @@
-package model;
+package org.example.pages.model;
+
+import io.qameta.allure.Step;
 
 import java.util.Objects;
 
@@ -17,7 +19,7 @@ public class Ticket {
     public String getTitle() {
         return title;
     }
-
+    @Step("Установка Title, значение: {title}")
     public void setTitle(String title) {
         this.title = title;
     }
@@ -26,7 +28,7 @@ public class Ticket {
     public String getQueueValue() {
         return queueValue;
     }
-
+    @Step("Установка QueueValue, значение: {queueValue}")
     public void setQueueValue(String queueValue) {
         this.queueValue = queueValue;
     }
@@ -34,7 +36,7 @@ public class Ticket {
     public String getDescriptionValue() {
         return descriptionValue;
     }
-
+    @Step("Установка DescriptionValue, значение: {descriptionValue}")
     public void setDescriptionValue(String descriptionValue) {
         this.descriptionValue = descriptionValue;
     }
@@ -42,7 +44,7 @@ public class Ticket {
     public int getPriorityValue() {
         return priorityValue;
     }
-
+    @Step("Установка PriorityValue, значение: {priorityValue}")
     public void setPriorityValue(int priorityValue) {
         this.priorityValue = priorityValue;
     }
@@ -50,18 +52,19 @@ public class Ticket {
     public String getMailValue() {
         return mailValue;
     }
-
+    @Step("Установка MailValue, значение: {mailValue}")
     public void setMailValue(String mailValue) {
         this.mailValue = mailValue;
     }
     // todo: equals и hashCode
 
-
+    @Step("Проверка эквивалентности двух объектов Title")
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ticket ticket = (Ticket) o;
+
         return priorityValue == ticket.priorityValue && Objects.equals(title, ticket.title) && Objects.equals(queueValue, ticket.queueValue) && Objects.equals(descriptionValue, ticket.descriptionValue) && Objects.equals(mailValue, ticket.mailValue);
     }
 

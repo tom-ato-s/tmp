@@ -1,6 +1,7 @@
-package pages;
+package org.example.pages.pages;
 
-import model.Ticket;
+import io.qameta.allure.Step;
+import org.example.pages.model.Ticket;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -40,7 +41,7 @@ public class CreateTicketPage extends HelpdeskBasePage {
         // Необходимо инициализировать элементы класса, лучше всего это делать в конструкторе
         PageFactory.initElements(driver, this);
     }
-
+    @Step("Создание тикета, значение: {ticket}")
     /** Создание тикета */
     public void createTicket(Ticket ticket) {
         setProblemTitle(ticket.getTitle());
@@ -51,13 +52,13 @@ public class CreateTicketPage extends HelpdeskBasePage {
         setMail(ticket.getMailValue());
         createTicket();
     }
-
+    @Step("Заполнение поля \"Summary of the problem\", значение: {text}")
     /** Заполнение поля "Summary of the problem" */
     public void setProblemTitle(String text) {
         // todo: заполнить поле\
         inputProblemTitle.sendKeys(text);
     }
-
+    @Step("Заполнение поля \"Queue\", значение: {queueValue}")
     /** Заполнение поля "Queue"*/
     public void setQueue(String queueValue) {
         Select queueSelect = new Select(inputQueue);
@@ -66,19 +67,19 @@ public class CreateTicketPage extends HelpdeskBasePage {
         if(queueValue.equals("Some Product"))
             queueSelect.getOptions().get(2).click();
     }
-
+    @Step("Заполнение поля \"Description of your issue\", значение: {descriptionValue}")
     /** Заполнение поля "Description of your issue" */
     public void setDescription(String descriptionValue) {
         // todo: заполнить поле\
         inputDescription.sendKeys(descriptionValue);
     }
-
+    @Step("Заполнение поля \"Priority\", значение: {priorityValue}")
     /** Заполнение поля "Priority"*/
     public void setPriority(int priorityValue) {
         Select prioritySelect = new Select(inputPriority);
         prioritySelect.getOptions().get(priorityValue).click();
     }
-
+    @Step("Заполнение поля \"Your E-Mail Address\", значение: {mailValue}")
     /** Заполнение поля "Your E-Mail Address" */
     public void setMail(String mailValue) {
         // todo: заполнить поле\
@@ -86,12 +87,11 @@ public class CreateTicketPage extends HelpdeskBasePage {
     }
 
     // todo: методы заполнения остальных полей
-
-    /** Зажатие кнопки "Submit Ticket" */
+    @Step("Зажатие кнопки \"Submit Ticket\"")
+    /** Зажатие кнопки "Submit Ticket", кнопки создания задания */
     public void createTicket() {
         // todo: нажать кнопку создания задания
        buttonSubmitTicket.click();
-
     }
 
 }

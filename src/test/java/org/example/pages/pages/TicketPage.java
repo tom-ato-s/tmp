@@ -1,5 +1,6 @@
-package pages;
+package org.example.pages.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -41,6 +42,7 @@ public class TicketPage extends HelpdeskBasePage {
 
     // todo: остальные методы получения значений полей
 
+    @Step("Получение значения имени тикета")
     /** Получить значение имени тикета */
     public String getNameTitle() {
         boolean flag=true;
@@ -66,19 +68,19 @@ public class TicketPage extends HelpdeskBasePage {
         }
         return sb.toString();
     }
-
+    @Step("Получение значения Queue")
     /** Получить значение Queue */
     public String getQueue() {
         // Получаем значение
         return queue.getText().substring(7).trim();
     }
-
+    @Step("Получение значения Priority")
     /** Получить значение Priority */
     public int getPriority() {
         // Получаем значение адреса почты
         return Integer.parseInt(getValue(priority).substring(0,1));
     }
-
+    @Step("Получение значения Description")
     public String getDescription() {
         return description
                 // Находи следующий элемент находящийся в том же теге
@@ -89,7 +91,7 @@ public class TicketPage extends HelpdeskBasePage {
                 .trim();
     }
 
-
+    @Step ("Зажатие кнопки \"Login In\" - переход в раздел авторизации")
     /** Зажатие кнопки "Login In" */
     public void GoTologin() {
         buttonGoTologin.click();
