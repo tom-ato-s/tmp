@@ -1,5 +1,7 @@
 package web;
 
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Epic;
 import io.qameta.allure.Step;
 import org.example.pages.elements.MainMenu;
 import org.example.pages.model.Ticket;
@@ -15,9 +17,13 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+
+@Epic("Тестирование сайта")
 public class HelpdeskUITest {
     private WebDriver driver;
     private Ticket ticket;
@@ -135,9 +141,9 @@ public class HelpdeskUITest {
 //    public static byte[] saveScreenshot(byte[] screenshot)
 //    {return screenshot;}
 
-//    @Attachment
-//    public static byte[] getBytes(String resourceName) throws IOException {
-//        return Files.readAllBytes(Paths.get("src/main/resources", resourceName));
-//    }
+    @Attachment
+    public static byte[] getBytes(String resourceName) throws IOException {
+        return Files.readAllBytes(Paths.get("src/main/resources", resourceName));
+    }
 
 }

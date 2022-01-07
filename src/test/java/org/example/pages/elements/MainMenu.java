@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
 
+import static web.HelpdeskUITest.getBytes;
+
 /** Элемент главного меню */
 public class MainMenu{
 
@@ -30,6 +32,7 @@ public class MainMenu{
     @Step ("Нажатие кнопки NewTicket")
     public void newTicket() throws IOException {
         newTicketBtn.click();
+        getBytes("picture.jpg");
     }
 
     public void logIn() {
